@@ -18,8 +18,8 @@ const KEY = process.env.HASDATA_API_KEY;
 const TIMEOUT_MS = 30_000;
 
 const EXPECTED = {
-    hasdata_zillow_listing_getRealEstateListings: 'keyword',
-    hasdata_zillow_property_getPropertyDetails: 'url',
+    hasdata_zillow_listing_getRealEstateListings: ['keyword', 'type'],
+    hasdata_zillow_property_getPropertyDetails: ['url'],
 };
 
 // A streamable HTTP body arrives either as plain JSON or as server-sent events. One SSE event
@@ -106,10 +106,12 @@ test('every tool still declares its required parameter', live, async () => {
         const required = tool.inputSchema?.required ?? [];
         const want = EXPECTED[tool.name];
         assert.ok(want, `tool ${tool.name} is not covered by this test`);
-        assert.ok(
-            required.includes(want),
-            `${tool.name} should require ${want}, declares: ${required.join(', ') || 'nothing'}`
-        );
+        for (const param of want) {
+            assert.ok(
+                required.includes(param),
+                `${tool.name} should require ${param}, declares: ${required.join(', ') || 'nothing'}`
+            );
+        }
     }
 });
 
