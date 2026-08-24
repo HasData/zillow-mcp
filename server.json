@@ -5,13 +5,21 @@
   "description": "Zillow for-sale, for-rent and sold listings, and full property details, as structured JSON.",
   "version": "1.0.0",
   "websiteUrl": "https://hasdata.com/apis/zillow-api",
-  "repository": { "url": "https://github.com/HasData/zillow-mcp", "source": "github" },
+  "repository": {
+    "url": "https://github.com/HasData/zillow-mcp",
+    "source": "github"
+  },
   "remotes": [
     {
       "type": "streamable-http",
       "url": "https://mcp.hasdata.com/api/mcp?apis=zillow",
       "headers": [
-        { "name": "x-api-key", "description": "HasData API key, created at app.hasdata.com. The free trial needs no card.", "isRequired": true, "isSecret": true }
+        {
+          "name": "x-api-key",
+          "description": "HasData API key, created at app.hasdata.com. The free trial needs no card.",
+          "isRequired": true,
+          "isSecret": true
+        }
       ]
     }
   ],
@@ -20,19 +28,16 @@
       "registryType": "npm",
       "identifier": "@hasdata/zillow-mcp",
       "version": "1.0.0",
-      "transport": { "type": "stdio" },
+      "transport": {
+        "type": "stdio"
+      },
       "environmentVariables": [
-        { "name": "HASDATA_API_KEY", "description": "HasData API key, created at app.hasdata.com. The free trial needs no card.", "isRequired": true, "isSecret": true }
-      ]
-    },
-    {
-      "registryType": "pypi",
-      "identifier": "hasdata-zillow-mcp",
-      "version": "1.0.0",
-      "runtimeHint": "uvx",
-      "transport": { "type": "stdio" },
-      "environmentVariables": [
-        { "name": "HASDATA_API_KEY", "description": "HasData API key, created at app.hasdata.com. The free trial needs no card.", "isRequired": true, "isSecret": true }
+        {
+          "name": "HASDATA_API_KEY",
+          "description": "HasData API key, created at app.hasdata.com. The free trial needs no card.",
+          "isRequired": true,
+          "isSecret": true
+        }
       ]
     }
   ]
