@@ -227,6 +227,8 @@ One property in full, by its URL.
 
 Returns the full page: `price`, `currency`, `fees`, `beds`, `baths`, `area`, `yearBuilt`, `homeType`, `mlsId`, a structured `address` and `geo`, the `description` and `highlights`, `photos`, `schools`, `daysOnZillow`, `views`, `saves`, an `agentInfo` block, and `priceHistory`, `taxHistory` and `mortgage` arrays. Zillow's own price estimate arrives in a `zestimate` object holding `zestimate`, an `estimatedSaleRange` and a `rentZestimate`. Read it as an estimate, not as a confirmed value.
 
+> `area` is an object here, `{ livingArea, livingAreaUnits }`, not the flat number the search tool returns. Read `area.livingArea` for the square footage on a property page, or a numeric comparison like `area > 2000` silently fails against an object.
+
 ```json
 {
   "id": 60134551,
