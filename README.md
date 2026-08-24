@@ -223,7 +223,7 @@ One property in full, by its URL.
 | Parameter | Type | Required | Notes |
 | :--- | :--- | :--- | :--- |
 | `url` | string | yes | A Zillow property URL, the `url` field from a listing result |
-| `extractAgentEmails` | boolean | | Attempt to pull the listing agent's email. Adds 10 credits, so the property call costs 15 instead of 5 |
+| `extractAgentEmails` | boolean | | Attempt to pull the listing agent's email. Adds 5 credits, so the property call costs 10 instead of 5 |
 
 Returns the full page: `price`, `currency`, `fees`, `beds`, `baths`, `area`, `yearBuilt`, `homeType`, `mlsId`, a structured `address` and `geo`, the `description` and `highlights`, `photos`, `schools`, `daysOnZillow`, `views`, `saves`, an `agentInfo` block, and `priceHistory`, `taxHistory` and `mortgage` arrays. Zillow's own price estimate arrives in a `zestimate` object holding `zestimate`, an `estimatedSaleRange` and a `rentZestimate`. Read it as an estimate, not as a confirmed value.
 
@@ -266,7 +266,7 @@ Results that carry data also carry a `requestMetadata.id` worth quoting in suppo
 
 ## Pricing, free tier and limits
 
-Each Zillow tool costs **5 credits per successful call**. Turning on `extractAgentEmails` adds 10 credits to the property call, 15 instead of 5, so leave it off unless you need the email. Response size does not change the price.
+Each Zillow tool costs **5 credits per successful call**. Turning on `extractAgentEmails` adds 5 credits to the property call, 10 instead of 5, so leave it off unless you need the email. Response size does not change the price.
 
 The free trial is **1,000 credits over 30 days with no card**, which is 200 Zillow calls at the base rate. After that an active account keeps getting 100 credits topped up each day whenever its balance drops below 100, so a low-volume agent runs on the free tier indefinitely.
 
