@@ -1,6 +1,6 @@
 [project]
 name = "hasdata-zillow-mcp"
-version = "1.0.0"
+version = "1.0.1"
 description = "MCP server for Zillow through HasData's hosted API. No Zillow account."
 readme = "README.md"
 requires-python = ">=3.10"

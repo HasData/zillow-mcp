@@ -14,6 +14,8 @@ https://mcp.hasdata.com/api/mcp?apis=zillow
 [![tool contract](https://github.com/HasData/zillow-mcp/actions/workflows/contract.yml/badge.svg)](https://github.com/HasData/zillow-mcp/actions/workflows/contract.yml)
 [![MCP](https://img.shields.io/badge/MCP-remote%20%7C%20streamable%20HTTP-6366f1?style=flat-square)](https://modelcontextprotocol.io)
 [![Tools](https://img.shields.io/badge/tools-2-10b981?style=flat-square)](#tools)
+[![npm](https://img.shields.io/npm/v/@hasdata/zillow-mcp?style=flat-square&logo=npm&label=npm&color=cb3837)](https://www.npmjs.com/package/@hasdata/zillow-mcp)
+[![PyPI](https://img.shields.io/pypi/v/hasdata-zillow-mcp?style=flat-square&logo=pypi&logoColor=white&label=PyPI&color=3775a9)](https://pypi.org/project/hasdata-zillow-mcp/)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](LICENSE)
 
 ## Contents
@@ -347,6 +349,8 @@ HasData accesses publicly available data only. A platform's terms may restrict a
 | Everything else we scrape | [Zillow Scraper API and 54 more](https://hasdata.com/apis/?utm_source=github&utm_medium=syndication&utm_campaign=zillow-mcp) |
 | Plans and credit costs | [Plans and credit costs](https://hasdata.com/prices?utm_source=github&utm_medium=syndication&utm_campaign=zillow-mcp) |
 | Keys and usage | [HasData dashboard](https://app.hasdata.com?utm_source=github&utm_medium=syndication&utm_campaign=zillow-mcp) |
+| Node launcher on npm | [@hasdata/zillow-mcp](https://www.npmjs.com/package/@hasdata/zillow-mcp) |
+| Python launcher on PyPI | [hasdata-zillow-mcp](https://pypi.org/project/hasdata-zillow-mcp/) |
 
 ## Development
 

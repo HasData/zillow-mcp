@@ -3,7 +3,7 @@
   "name": "com.hasdata/zillow",
   "title": "HasData Zillow",
   "description": "Zillow for-sale, for-rent and sold listings, and full property details, as structured JSON.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "websiteUrl": "https://hasdata.com/apis/zillow-api",
   "repository": {
     "url": "https://github.com/HasData/zillow-mcp",
@@ -27,7 +27,7 @@
     {
       "registryType": "npm",
       "identifier": "@hasdata/zillow-mcp",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "transport": {
         "type": "stdio"
       },
