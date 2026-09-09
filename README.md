@@ -2,9 +2,11 @@
 
 <!-- mcp-name: com.hasdata/zillow -->
 
-A hosted Model Context Protocol (MCP) server that gives Claude, Cursor, Windsurf and any other MCP client two read-only Zillow tools. Search for-sale, for-rent and sold listings with rich filters, and read a single property in full, all as structured JSON, with no Zillow account and nothing to host.
+A hosted Model Context Protocol (MCP) server that gives Claude, Cursor, Windsurf and any other MCP client two read-only Zillow tools. Search for-sale, for-rent and sold listings with rich filters, and read a single property in full, all as structured JSON, with nothing to host.
 
 It reads public listing pages on Zillow.com that a signed-out visitor can see.
+
+**1,000 free credits every month, no card required**, which is 200 Zillow calls at the base rate.
 
 ```
 https://mcp.hasdata.com/api/mcp?apis=zillow
@@ -36,7 +38,7 @@ https://mcp.hasdata.com/api/mcp?apis=zillow
 
 ## What you need
 
-An MCP client and a HasData API key from the [dashboard](https://app.hasdata.com/sign-up?utm_source=github&utm_medium=syndication&utm_campaign=zillow-mcp), free to create with no card, and the trial covers about 200 calls at the 5-credit rate. This is a remote server, so the simplest path is a URL and an `x-api-key` header, with no container to run and no Zillow account anywhere in the flow. A client that only speaks stdio reaches it through a thin launcher, published as `@hasdata/zillow-mcp` on npm and `hasdata-zillow-mcp` on PyPI, shown below.
+An MCP client and a HasData API key from the [dashboard](https://app.hasdata.com/sign-up?utm_source=github&utm_medium=syndication&utm_campaign=zillow-mcp), free to create with no card, and the trial covers about 200 calls at the 5-credit rate. This is a remote server, so the simplest path is a URL and an `x-api-key` header, with no container to run. A client that only speaks stdio reaches it through a thin launcher, published as `@hasdata/zillow-mcp` on npm and `hasdata-zillow-mcp` on PyPI, shown below.
 
 ## Quick start
 
@@ -270,11 +272,11 @@ Results that carry data also carry a `requestMetadata.id` worth quoting in suppo
 
 Each Zillow tool costs **5 credits per successful call**. Turning on `extractAgentEmails` adds 5 credits to the property call, 10 instead of 5, so leave it off unless you need the email. Response size does not change the price.
 
-The free trial is **1,000 credits over 30 days with no card**, which is 200 Zillow calls at the base rate. After that an active account keeps getting 100 credits topped up each day whenever its balance drops below 100, so a low-volume agent runs on the free tier indefinitely.
+The free tier is **1,000 credits every month with no card**, which is 200 Zillow calls at the base rate. It renews with the billing cycle, so a low-volume agent runs on the free tier indefinitely.
 
 Paid plans start at **$49 a month** for 200,000 credits, which is 40,000 calls. The unit price falls with volume, from **$1.23 per 1,000 calls** on the entry plan to **$0.50** on Business, **$0.42** on Growth and **$0.37** on the largest [high-volume plans](https://hasdata.com/prices?utm_source=github&utm_medium=syndication&utm_campaign=zillow-mcp).
 
-Your plan also sets concurrency. The free trial allows 1 request at a time, Startup 15, Business 30, Growth 50, and the high-volume plans run from 200 to 1,500. Handle the overflow case defensively in anything unattended.
+Your plan also sets concurrency. The free tier allows 1 request at a time, Startup 15, Business 30, Growth 50, and the high-volume plans run from 200 to 1,500. Handle the overflow case defensively in anything unattended.
 
 A request that comes back non-200 is not billed. A successful call that finds nothing is still a call.
 
@@ -308,7 +310,7 @@ Zillow's own API programs are for members and partners moving their own inventor
 
 ### Is there an official Zillow MCP server?
 
-Zillow does not publish one. This one is maintained by HasData and reads public pages, which is why it needs no Zillow account.
+Zillow does not publish one. This one is maintained by HasData and reads public Zillow.com pages.
 
 ### What is a Zillow MCP server?
 
@@ -316,7 +318,7 @@ A server that exposes Zillow listing data as tools an AI client can call. The cl
 
 ### Do I need a Zillow account or API key?
 
-No. The only credential is your HasData key. There is no Zillow membership to apply for, because the tools read public Zillow.com pages.
+No. The only credential is your HasData key. The tools read public Zillow.com pages.
 
 ### Why does a search result not show price history or schools?
 
