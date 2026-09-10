@@ -1,0 +1,23 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "hasdata-zillow-mcp",
+  "version": "1.0.1",
+  "description": "MCP server for Zillow through HasData's hosted API: search for-sale, for-rent and sold listings, and read a single property in full. 1,000 free credits every month.",
+  "author": {
+    "name": "HasData",
+    "url": "https://hasdata.com"
+  },
+  "homepage": "https://hasdata.com/apis/zillow-api",
+  "repository": "https://github.com/HasData/zillow-mcp",
+  "license": "MIT",
+  "keywords": [
+    "mcp",
+    "zillow",
+    "zillow-mcp",
+    "real-estate",
+    "property",
+    "model-context-protocol",
+    "hasdata",
+    "scraper"
+  ]
+}
