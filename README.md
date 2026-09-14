@@ -176,6 +176,11 @@ A search result is enough to rank and shortlist. Price history, tax history, the
 
 ## Tools
 
+| Tool | Credits | What it returns |
+| :--- | :--- | :--- |
+| `hasdata_zillow_listing_getRealEstateListings` | 5 | Each listing with address, Zillow URL/zpid, price, Zestimate, beds/baths, sqft, home type, status, days on Zillow, coordinates, thumbnail, and listing agent |
+| `hasdata_zillow_property_getPropertyDetails` | 5 | Address, list price, Zestimate and Rent Zestimate, price and tax history, beds/baths, living area, lot size, year built, home type, HOA, days on Zillow, listing… |
+
 Two tools, read-only. Samples below are trimmed from real calls, and the numbers move as the market moves. Read them as shapes. Each tool name links to its endpoint reference, which carries the full field list.
 
 The samples are the payload, not the whole response. A `tools/call` result carries one text block, and that text is itself JSON holding `url`, `status`, `text` and `json`, with the scraped data under `json`. From a raw JSON-RPC response the path is `result.content[0].text`, parsed, then `.json`. A chat client unwraps that for you and code talking to the endpoint directly does not.
