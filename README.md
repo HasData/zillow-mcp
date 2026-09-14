@@ -176,10 +176,10 @@ A search result is enough to rank and shortlist. Price history, tax history, the
 
 ## Tools
 
-| Tool | Credits | What it returns |
-| :--- | :--- | :--- |
-| `hasdata_zillow_listing_getRealEstateListings` | 5 | Each listing with address, Zillow URL/zpid, price, Zestimate, beds/baths, sqft, home type, status, days on Zillow, coordinates, thumbnail, and listing agent |
-| `hasdata_zillow_property_getPropertyDetails` | 5 | Address, list price, Zestimate and Rent Zestimate, price and tax history, beds/baths, living area, lot size, year built, home type, HOA, days on Zillow, listing… |
+| Tool | What it returns |
+| --- | --- |
+| `hasdata_zillow_listing_getRealEstateListings` | Each listing with address, Zillow URL/zpid, price, Zestimate, beds/baths, sqft, home type, status, days on Zillow, coordinates, thumbnail, and listing agent. 5 credits a call |
+| `hasdata_zillow_property_getPropertyDetails` | Address, list price, Zestimate and Rent Zestimate, price and tax history, beds/baths, living area, lot size, year built, home type, HOA, days on Zillow, listing…. 5 credits a call |
 
 Two tools, read-only. Samples below are trimmed from real calls, and the numbers move as the market moves. Read them as shapes. Each tool name links to its endpoint reference, which carries the full field list.
 
