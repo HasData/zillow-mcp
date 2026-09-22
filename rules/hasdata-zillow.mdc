@@ -1,0 +1,24 @@
+---
+description: How to pull Zillow listings and property details through the HasData MCP server
+alwaysApply: false
+---
+
+# Zillow through HasData
+
+Two tools, and the split matters. `hasdata_zillow_listing_getRealEstateListings` searches an area. `hasdata_zillow_property_getPropertyDetails` opens one property and takes the listing URL, not an id.
+
+## Searching
+
+`keyword` is the area as a person would type it into Zillow: `Austin, TX`, `78704`, `Brooklyn, New York`. `type` is required and takes `forSale`, `forRent` or `sold`. Everything else narrows the set: `price_min_` and `price_max_`, `beds_min_`, `baths_min_`, `squareFeet_min_`, `homeTypes__`, `daysOnZillow`, `page`.
+
+Ask for the filter, do not filter afterwards. A search with `price_max_` set costs the same as one without, and pulling five pages to drop four of them wastes credits and time.
+
+## Reading one property
+
+Take `url` from a search result and pass it to the property tool. The response carries the price history, tax history, the description, the agent block and the photo list. `extractAgentEmails` adds the agent's email where Zillow exposes one, and doubles the price of that call, so leave it off unless the email is the point of the task.
+
+## What to watch
+
+Sold listings carry `dateSold` and the last sale price, active ones do not. A search that matches nothing returns an empty array with a successful status, so branch on the length rather than on an error. Prices come back as numbers in `price` and as display strings elsewhere, and the two are not interchangeable when you sort.
+
+Every call spends credits from the connected HasData account, so prefer one precise search over several exploratory ones.
