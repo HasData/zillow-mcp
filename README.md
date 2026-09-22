@@ -9,7 +9,7 @@ It reads public listing pages on Zillow.com that a signed-out visitor can see.
 **1,000 free credits every month, no card required**, which is 200 Zillow calls at the base rate.
 
 ```
-https://mcp.hasdata.com/api/mcp?apis=zillow
+https://mcp.hasdata.com/mcp?apis=zillow
 ```
 
 [![Glama score](https://glama.ai/mcp/servers/HasData/zillow-mcp/badges/score.svg)](https://glama.ai/mcp/servers/HasData/zillow-mcp)
@@ -46,7 +46,7 @@ The server URL is the same for every client. We run it hands-on in Claude Code a
 
 | Field | Value |
 | :--- | :--- |
-| URL | `https://mcp.hasdata.com/api/mcp?apis=zillow` |
+| URL | `https://mcp.hasdata.com/mcp?apis=zillow` |
 | Transport | HTTP, streamable |
 | Auth header | `x-api-key: HASDATA_API_KEY` |
 
@@ -56,7 +56,7 @@ Clients with OAuth support can add the same URL as a connector and sign in witho
 <summary><b>Claude Code</b></summary>
 
 ```bash
-claude mcp add --transport http zillow "https://mcp.hasdata.com/api/mcp?apis=zillow" \
+claude mcp add --transport http zillow "https://mcp.hasdata.com/mcp?apis=zillow" \
   --header "x-api-key: HASDATA_API_KEY"
 ```
 
@@ -65,7 +65,7 @@ claude mcp add --transport http zillow "https://mcp.hasdata.com/api/mcp?apis=zil
 <details>
 <summary><b>Claude Desktop</b></summary>
 
-Settings, then Connectors, then Add custom connector, then paste `https://mcp.hasdata.com/api/mcp?apis=zillow` and sign in.
+Settings, then Connectors, then Add custom connector, then paste `https://mcp.hasdata.com/mcp?apis=zillow` and sign in.
 
 For the config-file route, Claude Desktop loads only local (stdio) servers, so it reaches a remote server through a stdio launcher. The `@hasdata/zillow-mcp` package is that launcher, and it reads the key from the environment. Add this to `claude_desktop_config.json`:
 
@@ -106,7 +106,7 @@ For Python instead of Node, swap the launcher for the PyPI package, which `uvx` 
 {
   "mcpServers": {
     "zillow": {
-      "url": "https://mcp.hasdata.com/api/mcp?apis=zillow",
+      "url": "https://mcp.hasdata.com/mcp?apis=zillow",
       "headers": { "x-api-key": "HASDATA_API_KEY" }
     }
   }
@@ -124,7 +124,7 @@ For Python instead of Node, swap the launcher for the PyPI package, which `uvx` 
 {
   "mcpServers": {
     "zillow": {
-      "serverUrl": "https://mcp.hasdata.com/api/mcp?apis=zillow",
+      "serverUrl": "https://mcp.hasdata.com/mcp?apis=zillow",
       "headers": { "x-api-key": "HASDATA_API_KEY" }
     }
   }
@@ -143,7 +143,7 @@ For Python instead of Node, swap the launcher for the PyPI package, which `uvx` 
   "servers": {
     "zillow": {
       "type": "http",
-      "url": "https://mcp.hasdata.com/api/mcp?apis=zillow",
+      "url": "https://mcp.hasdata.com/mcp?apis=zillow",
       "headers": { "x-api-key": "HASDATA_API_KEY" }
     }
   }

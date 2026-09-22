@@ -3,7 +3,7 @@
   "mcpServers": {
     "zillow": {
       "type": "streamable-http",
-      "url": "https://mcp.hasdata.com/api/mcp?apis=zillow",
+      "url": "https://mcp.hasdata.com/mcp?apis=zillow",
       "headers": {
         "x-api-key": "YOUR_HASDATA_API_KEY"
       }
