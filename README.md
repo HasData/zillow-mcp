@@ -6,7 +6,7 @@ A hosted Model Context Protocol (MCP) server that gives Claude, Cursor, Windsurf
 
 It reads public listing pages on Zillow.com that a signed-out visitor can see.
 
-**1,000 free credits every month, no card required**, which is 200 Zillow calls at the base rate.
+**1,000 free credits every month, no card required**, which is 100 Zillow calls at the base rate.
 
 ```
 https://mcp.hasdata.com/mcp?apis=zillow
@@ -154,23 +154,23 @@ For Python instead of Node, swap the launcher for the PyPI package, which `uvx` 
 
 ## Example prompts
 
-Prompts, not code. Paste one in and the agent picks the tool itself. Each is annotated with the calls it takes, because every successful call costs 5 credits.
+Prompts, not code. Paste one in and the agent picks the tool itself. Each is annotated with the calls it takes, because every successful call costs 10 credits.
 
 > Search for-sale homes in Austin, TX with at least three beds under $600k, sorted newest first, and give me the ten most recent with price and days on market.
 
-*One call, 5 credits. Price, beds, area and days on market come back on the search result.*
+*One call, 10 credits. Price, beds, area and days on market come back on the search result.*
 
 > Take the top result and pull its full detail: price history, tax history, the price estimate, and the assigned schools.
 
-*One call, 5 credits. Those live on the property page, which the details tool reads by URL.*
+*One call, 10 credits. Those live on the property page, which the details tool reads by URL.*
 
 > Find for-rent condos in Austin that allow cats, then pull the rental estimate on the three cheapest.
 
-*Four calls, 20 credits. One search, then one property call for each of the three.*
+*Four calls, 40 credits. One search, then one property call for each of the three.*
 
 > For this property URL, give me the list price, the price estimate, and the last three sales in its price history.
 
-*One call, 5 credits.*
+*One call, 10 credits.*
 
 A search result is enough to rank and shortlist. Price history, tax history, the estimate, schools and the agent come from the property call, so a prompt that shortlists then inspects three homes is one search plus three property calls.
 
@@ -178,8 +178,8 @@ A search result is enough to rank and shortlist. Price history, tax history, the
 
 | Tool | What it returns |
 | --- | --- |
-| `hasdata_zillow_listing_getRealEstateListings` | Each listing with address, Zillow URL/zpid, price, Zestimate, beds/baths, sqft, home type, status, days on Zillow, coordinates, thumbnail, and listing agent. 5 credits a call |
-| `hasdata_zillow_property_getPropertyDetails` | Address, list price, Zestimate and Rent Zestimate, price and tax history, beds/baths, living area, lot size, year built, home type, HOA, days on Zillow, listing…. 5 credits a call |
+| `hasdata_zillow_listing_getRealEstateListings` | Each listing with address, Zillow URL/zpid, price, Zestimate, beds/baths, sqft, home type, status, days on Zillow, coordinates, thumbnail, and listing agent. 10 credits a call |
+| `hasdata_zillow_property_getPropertyDetails` | Address, list price, Zestimate and Rent Zestimate, price and tax history, beds/baths, living area, lot size, year built, home type, HOA, days on Zillow, listing…. 10 credits a call |
 
 Two tools, read-only. Samples below are trimmed from real calls, and the numbers move as the market moves. Read them as shapes. Each tool name links to its endpoint reference, which carries the full field list.
 
@@ -232,7 +232,7 @@ One property in full, by its URL.
 | Parameter | Type | Required | Notes |
 | :--- | :--- | :--- | :--- |
 | `url` | string | yes | A Zillow property URL, the `url` field from a listing result |
-| `extractAgentEmails` | boolean | | Attempt to pull the listing agent's email. Adds 5 credits, so the property call costs 10 instead of 5 |
+| `extractAgentEmails` | boolean | | Attempt to pull the listing agent's email. Adds 5 credits, so the property call costs 15 instead of 10 |
 
 Returns the full page: `price`, `currency`, `fees`, `beds`, `baths`, `area`, `yearBuilt`, `homeType`, `mlsId`, a structured `address` and `geo`, the `description` and `highlights`, `photos`, `schools`, `daysOnZillow`, `views`, `saves`, an `agentInfo` block, and `priceHistory`, `taxHistory` and `mortgage` arrays. Zillow's own price estimate arrives in a `zestimate` object holding `zestimate`, an `estimatedSaleRange` and a `rentZestimate`. Read it as an estimate, not as a confirmed value.
 
@@ -275,11 +275,11 @@ Results that carry data also carry a `requestMetadata.id` worth quoting in suppo
 
 ## Pricing, free tier and limits
 
-Each Zillow tool costs **5 credits per successful call**. Turning on `extractAgentEmails` adds 5 credits to the property call, 10 instead of 5, so leave it off unless you need the email. Response size does not change the price.
+Each Zillow tool costs **10 credits per successful call**. Turning on `extractAgentEmails` adds 5 credits to the property call, 15 instead of 10, so leave it off unless you need the email. Response size does not change the price.
 
-The free tier is **1,000 credits every month with no card**, which is 200 Zillow calls at the base rate. It renews with the billing cycle, so a low-volume agent runs on the free tier indefinitely.
+The free tier is **1,000 credits every month with no card**, which is 100 Zillow calls at the base rate. It renews with the billing cycle, so a low-volume agent runs on the free tier indefinitely.
 
-Paid plans start at **$59 a month** for 200,000 credits, which is 40,000 calls. The unit price falls with volume, from **$1.48 per 1,000 calls** on the entry plan to **$0.60** on Basic and **$0.41** across the Growth tiers. Current figures live on the [pricing page](https://hasdata.com/prices?utm_source=github&utm_medium=syndication&utm_campaign=zillow-mcp).
+Paid plans start at **$59 a month** for 200,000 credits, which is 20,000 calls. The unit price falls with volume, from **$1.48 per 1,000 calls** on the entry plan to **$0.60** on Basic and **$0.41** across the Growth tiers. Current figures live on the [pricing page](https://hasdata.com/prices?utm_source=github&utm_medium=syndication&utm_campaign=zillow-mcp).
 
 Your plan also sets concurrency. The free tier allows 1 request at a time, Startup 5, Basic 15, and the Growth tiers run from 50 to 500. Handle the overflow case defensively in anything unattended.
 
@@ -363,7 +363,7 @@ HasData accesses publicly available data only. A platform's terms may restrict a
 
 This repository is configuration and documentation for a remote server. There is no build step and nothing to containerize.
 
-The tests in `test/` assert the tool contract, the part that can break without a commit here. They check that `?apis=zillow` returns exactly two tools, that every tool still declares its required parameters, that no name changed, and that the key in use is actually accepted. That last check calls a tool for real and costs 5 credits, which is the price of a canary that can fail for the right reason.
+The tests in `test/` assert the tool contract, the part that can break without a commit here. They check that `?apis=zillow` returns exactly two tools, that every tool still declares its required parameters, that no name changed, and that the key in use is actually accepted. That last check calls a tool for real and costs 10 credits, which is the price of a canary that can fail for the right reason.
 
 ```bash
 # macOS and Linux
