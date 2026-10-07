@@ -16,6 +16,7 @@ https://mcp.hasdata.com/mcp?apis=zillow
 [![tool contract](https://github.com/HasData/zillow-mcp/actions/workflows/contract.yml/badge.svg)](https://github.com/HasData/zillow-mcp/actions/workflows/contract.yml)
 [![MCP](https://img.shields.io/badge/MCP-remote%20%7C%20streamable%20HTTP-6366f1?style=flat-square)](https://modelcontextprotocol.io)
 [![Tools](https://img.shields.io/badge/tools-2-10b981?style=flat-square)](#tools)
+- [Prompts and resources](#prompts-and-resources)
 [![npm](https://img.shields.io/npm/v/@hasdata/zillow-mcp?style=flat-square&logo=npm&label=npm&color=cb3837)](https://www.npmjs.com/package/@hasdata/zillow-mcp)
 [![PyPI](https://img.shields.io/pypi/v/hasdata-zillow-mcp?style=flat-square&logo=pypi&logoColor=white&label=PyPI&color=3775a9)](https://pypi.org/project/hasdata-zillow-mcp/)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](LICENSE)
@@ -256,6 +257,33 @@ Returns the full page: `price`, `currency`, `fees`, `beds`, `baths`, `area`, `ye
   "schools": { "elementarySchool": { "name": "Bluebonnet Trail", "district": "Manor ISD" } }
 }
 ```
+
+## Prompts and resources
+
+The server ships 2 prompts, ready-made workflows a client can offer instead of making the user compose a tool call.
+
+| Prompt | What it does |
+| --- | --- |
+| `zillow_listings` | Find homes for sale, for rent or sold in an area. |
+| `zillow_property` | Get the full details of one Zillow property. |
+
+Alongside them the server exposes 11 resources, one per parameter whose accepted values are a fixed list. Reading one is cheaper than learning the vocabulary from a rejected call, and it costs no credits. Each URI is `hasdata://zillow/<parameter>`.
+
+| Parameter | Values | What it selects |
+| --- | ---: | --- |
+| `type` | 3 | The type of listing. |
+| `sort` | 11 | The sorting option for the search results. |
+| `homeTypes__` | 7 | An array of home types to filter the listings. |
+| `listingPublishOptions__` | 7 | An array of listing publish options. Use `ownerPosted` for listings by owner and `agentListed` for listings by agent. |
+| `propertyStatus__` | 3 | An array of property statuses. |
+| `tours__` | 2 | An array of tour options. |
+| `otherAmenities__` | 8 | An array of other amenities. |
+| `views__` | 4 | An array of views. |
+| `pets__` | 3 | An array of pet options. |
+| `basement__` | 2 | An array of basement options. |
+| `daysOnZillow` | 9 | The number of days a listing has been on Zillow. |
+
+Both lists are served without an API key, so a client can read them before a user has signed up.
 
 ## Errors and failure paths
 
