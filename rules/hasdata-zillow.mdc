@@ -22,3 +22,9 @@ Take `url` from a search result and pass it to the property tool. The response c
 Sold listings carry `dateSold` and the last sale price, active ones do not. A search that matches nothing returns an empty array with a successful status, so branch on the length rather than on an error. Prices come back as numbers in `price` and as display strings elsewhere, and the two are not interchangeable when you sort.
 
 Every call spends credits from the connected HasData account, so prefer one precise search over several exploratory ones.
+
+## Prompts and resources
+
+The server also serves resources that spell out the accepted values of every parameter that takes a fixed list, each one at `hasdata://zillow/<parameter>`. Reading one spends no credits and makes no upstream request, which beats discovering the vocabulary from a rejected call. Listing them needs no API key either, so a client can read them before the user has connected an account.
+
+Ready-made prompts cover the usual workflows. Offer one of those before composing a tool call by hand.
